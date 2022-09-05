@@ -94,7 +94,7 @@ class VisualiseDf:
 
         for i in range(len(df[column].value_counts())):
             fig.text(i, (df[column].value_counts().values[i]), str(df[column].value_counts().values[i]),
-                 fontdict=dict(color='black', fontsize=30), horizontalalignment='center')
+                 fontdict=dict(color='black', fontsize=15), horizontalalignment='center')
 
         # plt.show()
 
