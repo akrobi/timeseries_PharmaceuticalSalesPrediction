@@ -1,5 +1,5 @@
 import sys
-sys.path.insert(0, '/AB_Testing')
+# sys.path.insert(0, '/AB_Testing')
 
 import numpy as np
 import pandas as pd
