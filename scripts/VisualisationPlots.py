@@ -79,15 +79,44 @@ class VisualiseDf:
         plt.yticks( fontsize=14)
         plt.show()
 
-   # plots a distribution (frequency of a variable)
+    # plots a distribution (frequency of a variable)
     # better results on discrete variables e.g categorical variables
     # parameters: dataframe, column title
-    # returns: histogram count plot 
+    # returns: histogram count plot with value counts on top
     def plot_count(df: pd.DataFrame, column: str) -> None:
         plt.figure(figsize=(12, 7))
-        sns.countplot(data=df, x=column)
+        fig = sns.countplot(data=df, x=column, order=df[column].value_counts().index)
         plt.title(f'Distribution of {column}', size=20, fontweight='bold')
-        plt.show()
+        plt.xticks(rotation=75, fontsize=16)
+        plt.yticks(fontsize=16)
+        plt.xlabel(column, fontsize=16)
+        plt.ylabel('Frequency', fontsize=16)
+
+        for i in range(len(df[column].value_counts())):
+            fig.text(i, (df[column].value_counts().values[i]), str(df[column].value_counts().values[i]),
+                 fontdict=dict(color='black', fontsize=30), horizontalalignment='center')
+
+        # plt.show()
+
+
+    # plots multiple distributions (frequency of a variable)
+    # better results on discrete variables e.g categorical variables
+    # parameters: dataframe, column title, hue
+    # returns: histogram count plot with value counts on top
+    def multi_plot_count(df:pd.DataFrame, column:str, hue: str) -> None:
+        plt.figure(figsize=(12,7))
+        fig = sns.countplot(data = df, x = column, hue=hue)
+        plt.title(f'Distribution of {column} per {hue}', size=20, fontweight='bold')
+        plt.xticks(fontsize=16)
+        plt.yticks(fontsize=16)
+        plt.xlabel(column, fontsize=16)
+        plt.ylabel('Frequency', fontsize=16)
+
+        for p in fig.patches:
+            width = p.get_width()
+            height = p.get_height()
+            x, y = p.get_xy()
+            fig.annotate(f'{(height)}', (x + width/2, y + height*1.02), ha='center', size = 15)
 
     # Draw a nested violinplot and split the violins for easier comparison
     def plot_violin(df, x_col:str, y_col:str, hue:str, inner:str):
