@@ -11,3 +11,4 @@ sklearn
 scipy
 itertools
 logger
+plotly.express
