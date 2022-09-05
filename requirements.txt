@@ -6,4 +6,8 @@ pandas
 seaborn
 matplotlib.pyplot
 sklearn.preprocessing
+sklearn.ensemble
+sklearn
+scipy
+itertools
 logger
