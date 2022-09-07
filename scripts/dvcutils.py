@@ -7,7 +7,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join("./scripts/")))
 
 class ReadWriteDVC():
-    def dvc_get_data(self, path, version='v1') :
+    def dvc_get_data(path, version='v1') :
         try:
             repo = "~/timeseries_PharmaceuticalSalesPrediction"
             data_url = dvc.api.get_url(path=path, repo=repo, rev=version)
@@ -17,7 +17,7 @@ class ReadWriteDVC():
             df = None
         return df
     
-    def to_csv(self, df, csv_path, index=False):
+    def to_csv(df, csv_path, index=False):
         try:
             df.to_csv(csv_path, index=index)
         except Exception as e:
