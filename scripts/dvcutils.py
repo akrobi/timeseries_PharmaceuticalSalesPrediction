@@ -1,4 +1,4 @@
-from msilib.schema import Error
+# from msilib.schema import Error
 import pandas as pd
 import dvc.api
 import sys 
@@ -21,4 +21,5 @@ class ReadWriteDVC():
         try:
             df.to_csv(csv_path, index=index)
         except Exception as e:
-            raise Error("did not write to csv file")
+            # raise Error("did not write to csv file")
+            pass
